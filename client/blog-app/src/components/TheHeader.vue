@@ -40,12 +40,11 @@ nav {
 
 .nav-item {
   list-style-type: none;
+  padding: 1rem;
 }
 
 a {
   text-decoration: none;
-  padding: 1rem;
-  border-radius: 1rem;
 }
 
 .nav-project-name {

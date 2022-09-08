@@ -13,6 +13,7 @@ const router = createRouter({
     { path: "/about", component: TheAbout },
     { path: "/signup", component: TheSignUp },
     { path: "/singlepost", component: TheSinglePost },
+    { path: "/posts/:postId", component: TheSinglePost },
   ],
 });
 

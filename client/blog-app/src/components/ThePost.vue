@@ -1,13 +1,11 @@
 <template>
-  <div class="card" style="width: 18rem">
-    <img :src="imgUrl" class="card-img-top" alt="..." />
+  <div class="card" style="width: 21rem; height: 100%">
+    <img :src="imgUrl" class="card-img-top post-image" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">
         {{ content.length > 150 ? content.substring(0, 150) + "..." : content }}
-        <router-link to="/singlepost" @click="handleReadMore"
-          >Read more</router-link
-        >
+        <router-link to="" @click="handleReadMore">Read more</router-link>
       </p>
       <hr />
       <div class="post-footer">
@@ -15,7 +13,7 @@
         <span
           ><!-- <router-link to="/">Read More</router-link> -->
 
-          <button @click="deletePost" v-if="!true">delete</button>
+          <button @click="deletePost" v-if="false">delete</button>
         </span>
       </div>
     </div>
@@ -31,15 +29,7 @@ export default {
     },
     handleReadMore() {
       console.log("handleReadMore");
-      const singlePost = {
-        id: this.id,
-        title: this.title,
-        content: this.content,
-        imageUrl: this.imgUrl,
-        topic: this.topic,
-      };
-
-      this.$store.commit("setSinglePost", singlePost);
+      this.$router.push("/posts/" + this.id);
     },
   },
 };
@@ -53,5 +43,9 @@ export default {
 .post-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.post-image {
+  height: 20rem;
 }
 </style>

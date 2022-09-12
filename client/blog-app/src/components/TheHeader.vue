@@ -7,8 +7,12 @@
           <li class="nav-item"><router-link to="/">Home</router-link></li>
           <li class="nav-item"><router-link to="/about">About</router-link></li>
           <li class="nav-item">
-            <router-link to="/contact">Contact</router-link>
+            <router-link to="/my-posts" v-if="getIsLogin">My Posts</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/new-post" v-if="getIsLogin">New Post</router-link>
+          </li>
+
           <li class="nav-item sign-up">
             <router-link to="/signup" class="sign-up__a">SignUp</router-link>
           </li>
@@ -17,6 +21,16 @@
     </nav>
   </header>
 </template>
+
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["getIsLogin"]),
+  },
+};
+</script>
 
 <style scoped>
 header {

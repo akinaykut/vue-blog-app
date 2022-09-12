@@ -3,76 +3,17 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      posts: [
-        {
-          id: 1,
-          title: "How to improve web1",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/software-engineering-perspectives-what-is-a-software-engineer.jpeg",
-          topic: "mobil-programming",
-        },
-        {
-          id: 2,
-          title: "How to improve web4",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://www.springboard.com/blog/wp-content/uploads/2020/07/what-skills-do-you-need-to-become-a-software-engineer.png",
-          topic: "web-development",
-        },
-        {
-          id: 3,
-          title: "How to improve web3",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2020/09/04184424/How-to-Become-a-Software-Engineer.jpg",
-          topic: "game-development",
-        },
-        {
-          id: 4,
-          title: "How to improve web2",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/software-engineering-perspectives-software-engineer-job-outlook.jpeg",
-          topic: "web-development",
-        },
-        {
-          id: 5,
-          title: "How to improve web2",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://www.cio.com/wp-content/uploads/2021/12/4_software-engineering-100733150-orig.jpg?quality=50&strip=all",
-          topic: "game-development",
-        },
-        {
-          id: 6,
-          title: "How to improve web2",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://img.emg-services.net/educations/education1425589/applied-computer-science-1-1-1-1-1.png",
-          topic: "cyber-security",
-        },
-        {
-          id: 7,
-          title: "How to improve web2",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-          imageUrl:
-            "https://miro.medium.com/max/1400/1*ULnvjYy9sFmxnXLIgjRXLQ.png",
-          topic: "data-sience",
-        },
-      ],
+      posts: [],
+      isLogin: true,
+      author: "akinaykut05@gmail.com",
     };
   },
   mutations: {
+    setPosts(state, payload) {
+      state.posts = payload;
+    },
     addPost(state, payload) {
-      state.posts.push(payload);
+      state.posts.unshift(payload);
     },
     deletePost(state, payload) {
       state.posts = state.posts.filter((post) => post.id !== payload);
@@ -81,6 +22,12 @@ const store = createStore({
   getters: {
     getPosts(state) {
       return state.posts;
+    },
+    getIsLogin(state) {
+      return state.isLogin;
+    },
+    getAuthor(state) {
+      return state.author;
     },
   },
   actions: {

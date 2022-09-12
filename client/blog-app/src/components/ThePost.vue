@@ -10,11 +10,10 @@
       <hr />
       <div class="post-footer">
         <span class="post-topic">{{ topic }}</span>
-        <span
-          ><!-- <router-link to="/">Read More</router-link> -->
-
-          <button @click="deletePost" v-if="false">delete</button>
-        </span>
+        <hr />
+        <div>
+          <slot></slot>
+        </div>
       </div>
     </div>
   </div>

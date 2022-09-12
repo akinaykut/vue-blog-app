@@ -37,20 +37,34 @@ export default {
   computed: {
     ...mapGetters(["getPosts"]),
   },
-  created() {
+  /* created() {
+    console.log("created calisti");
     console.log(this.getPosts);
     this.error = false;
     const path = this.$route.params;
     console.log(path.postId);
 
     const post = this.getPosts.filter((post) => post.id == path.postId);
-    console.log(post);
+    console.log(this.getPosts);
     this.blogPost = post[0];
     console.log(this.blogPost);
     if (!this.blogPost) {
       this.error = true;
     }
   },
+  beforeUpdate() {
+    this.error = false;
+    const path = this.$route.params;
+    console.log(path.postId);
+
+    const post = this.getPosts.filter((post) => post.id == path.postId);
+    console.log(this.getPosts);
+    this.blogPost = post[0];
+    console.log(this.blogPost);
+    if (!this.blogPost) {
+      this.error = true;
+    }
+  }, */
 };
 </script>
 

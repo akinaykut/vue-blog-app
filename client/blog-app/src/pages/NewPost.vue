@@ -1,8 +1,10 @@
 <template>
   <div>
     <the-header></the-header>
-    <h1>The Contact</h1>
-    <add-post></add-post>
+
+    <main>
+      <add-post></add-post>
+    </main>
   </div>
 </template>
 
@@ -15,3 +17,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+main {
+  padding: 7% 0;
+}
+</style>

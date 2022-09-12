@@ -3,8 +3,20 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "App",
+
+  created() {
+    axios
+      .get("http://localhost:5000")
+      .then((response) => {
+        console.log(response.data);
+        this.$store.commit("setPosts", response.data);
+      })
+      .catch((err) => console.log(err));
+  },
 };
 </script>
 

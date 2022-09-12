@@ -1,34 +1,5 @@
 <template>
   <div class="add-post">
-    <!--     <form @submit.prevent="handleSubmit">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        v-model="newPost.title"
-        placeholder="Tittle"
-        name="title"
-      />
-
-      <input
-        type="textarea"
-        v-model="newPost.content"
-        placeholder="Content"
-        row="3"
-        colum="5"
-      />
-
-      <input type="text" v-model="newPost.imageUrl" placeholder="Image url" />
-
-      <select v-model="newPost.topic">
-        <option value="web-development">Web Development</option>
-        <option value="cyber-security">Syber Security</option>
-        <option value="mobil-programming">Mobil Programming</option>
-        <option value="game-development">Game Development</option>
-        <option value="data-sience">Data Sience</option>
-      </select>
-      <button class="btn btn-lg btn-primary">Add</button>
-    </form> -->
-
     <form @submit.prevent="handleSubmit">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
@@ -36,16 +7,29 @@
           type="text"
           class="form-control"
           id="title"
+          name="title"
           v-model="newPost.title"
         />
       </div>
 
+      <div class="mb-3">
+        <label for="topic" class="form-label">Topic</label>
+        <br />
+        <select v-model="newPost.topic" name="topic">
+          <option value="web-development">Web Development</option>
+          <option value="cyber-security">Syber Security</option>
+          <option value="mobil-programming">Mobil Programming</option>
+          <option value="game-development">Game Development</option>
+          <option value="data-sience">Data Sience</option>
+        </select>
+      </div>
       <div class="mb-3">
         <label for="imageUrl" class="form-label">Image Url</label>
         <input
           type="text"
           class="form-control"
           id="imageUrl"
+          name="imageUrl"
           v-model="newPost.imageUrl"
         />
       </div>
@@ -87,7 +71,6 @@ export default {
   methods: {
     handleSubmit() {
       axios.post("http://localhost:5000", this.newPost);
-
       this.$store.commit("addPost", this.newPost);
       this.$router.push("/");
     },

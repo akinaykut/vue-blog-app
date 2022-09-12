@@ -1,34 +1,6 @@
 <template>
   <main>
     <div class="main-filter-buttons">
-      <!-- <button
-        class="main-filter-button"
-        @click="filterPosts('web-development')"
-      >
-        web development
-      </button>
-      <button class="main-filter-button" @click="filterPosts('cyber-security')">
-        cyber-security
-      </button>
-      <button
-        class="main-filter-button btn btn-md btn-primary"
-        @click="filterPosts('game-development')"
-      >
-        game development
-      </button>
-      <button
-        class="main-filter-button"
-        @click="filterPosts('game-development')"
-      >
-        game development
-      </button>
-      <button
-        class="main-filter-button"
-        @click="filterPosts('game-development')"
-      >
-        game development
-      </button> -->
-
       <label for="filter"> Filter </label>
       <select v-model="topic" name="filter">
         <option value="web-development">Web Development</option>
@@ -42,7 +14,7 @@
 
     <hr />
     <div class="posts">
-      <div v-for="post in posts" :key="post.id" class="the-post">
+      <div v-for="post in filteredPosts" :key="post.id" class="the-post">
         <the-post
           :title="post.title"
           :content="post.content"
@@ -62,12 +34,51 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      posts: [],
+      allPosts: [],
+      filteredPosts: [],
       topic: "all",
     };
   },
   created() {
-    this.posts = this.getPosts;
+    /* this.posts = this.getPosts; */
+    /* axios.get("http://localhost:5000").then((response) => {
+      this.$store.commit("setPosts", response.data);
+      
+    }); */
+
+    this.allPosts = this.getPosts;
+    this.filteredPosts = this.allPosts;
+
+    /* axios
+      .get(
+        "https://blog-app-vue-444a9-default-rtdb.europe-west1.firebasedatabase.app/posts.json"
+      )
+      .then((response) => {
+        this.posts = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios
+      .get("https://blog-app-vue-444a9-default-rtdb.europe-west1.firebasedatabase.app/posts.json"
+        
+      )
+      .then(function (response) {
+        // handle success
+        console.log(response.data);
+        let data = [];
+        for (let i in response.data) {
+          console.log(response.data[i]);
+          data.push(response.data[i]);
+        }
+        console.log(data);
+
+        this.posts = data;
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });  */
   },
   components: { ThePost },
   computed: {
@@ -86,9 +97,11 @@ export default {
   methods: {
     filterPosts(topic) {
       if (topic === "all") {
-        this.posts = this.getPosts;
+        this.filteredPosts = this.allPosts;
       } else {
-        this.posts = this.getPosts.filter((post) => post.topic === topic);
+        this.filteredPosts = this.allPosts.filter(
+          (post) => post.topic === topic
+        );
       }
     },
   },
@@ -99,7 +112,7 @@ export default {
 main {
   width: 81%;
   margin: 0 auto;
-  padding-top: 5%;
+  padding: 5% 0;
 }
 .main-filter-buttons {
   display: flex;

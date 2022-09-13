@@ -1,6 +1,6 @@
 <template>
   <div class="posts">
-    <div v-for="post in myPosts" :key="post.id" class="the-post">
+    <div v-for="post in myPosts" :key="post._id" class="the-post">
       <the-post
         :title="post.title"
         :content="post.content"
@@ -9,7 +9,7 @@
         :id="post.id"
       >
         <button class="btn btn-lg btn-success">Edit</button>
-        <button class="btn btn-lg btn-danger" @click="deletePost(post.id)">
+        <button class="btn btn-lg btn-danger" @click="deletePost(post._id)">
           Delete
         </button>
       </the-post>
@@ -26,15 +26,21 @@ export default {
   data() {
     return {
       myPosts: [],
+      id: "",
     };
   },
 
   methods: {
-    deletePost(id) {
-      console.log("geldi" + id);
-      this.myPosts = this.myPosts.filter((post) => post.id !== id);
-      this.$store.commit("deletePost", id);
-      axios.post("http://localhost:5000/delete-post", { id: id });
+    deletePost(_id) {
+      console.log("geldi" + _id);
+      this.myPosts = this.myPosts.filter((post) => post.id !== _id);
+      this.$store.commit("deletePost", _id);
+
+      axios.delete("http://localhost:5000/posts", {
+        data: {
+          id: _id,
+        },
+      });
     },
   },
   created() {

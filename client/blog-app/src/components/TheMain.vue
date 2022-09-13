@@ -14,13 +14,13 @@
 
     <hr />
     <div class="posts">
-      <div v-for="post in filteredPosts" :key="post.id" class="the-post">
+      <div v-for="post in filteredPosts" :key="post._id" class="the-post">
         <the-post
           :title="post.title"
           :content="post.content"
           :imgUrl="post.imageUrl"
           :topic="post.topic"
-          :id="post.id"
+          :id="post._id"
         ></the-post>
       </div>
     </div>

@@ -59,7 +59,6 @@ export default {
   data() {
     return {
       newPost: {
-        id: new Date().getMilliseconds(),
         title: "",
         content: "",
         imageUrl: "",
@@ -71,6 +70,7 @@ export default {
   methods: {
     handleSubmit() {
       axios.post("http://localhost:5000", this.newPost);
+      axios.post("http://localhost:5000/posts", this.newPost);
       this.$store.commit("addPost", this.newPost);
       this.$router.push("/");
     },

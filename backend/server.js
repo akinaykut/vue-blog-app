@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const postRoutes = require("./routes/posts");
+
 const app = express();
 
 app.use(cors());
@@ -9,7 +13,7 @@ app.use(
     extended: true,
   })
 );
-
+dotenv.config();
 app.use(
   express.json({
     limit: "5mb",
@@ -18,6 +22,8 @@ app.use(
     },
   })
 );
+
+app.use("/posts", postRoutes);
 
 let posts = [
   {
@@ -104,9 +110,16 @@ app.post("/delete-post", (req, res) => {
   posts = posts.filter((post) => post.id !== id);
 });
 
-/* 
-{mongodb+srv://admin-akinaykut:<password>@blog-app.s5kss9n.mongodb.net/?retryWrites=true&w=majority} */
-
-app.listen(5000, function () {
-  console.log("Server started on port 5000");
-});
+mongoose
+  .connect(process.env.CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUniFiedTopology: true,
+  })
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on port: ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });

@@ -8,9 +8,9 @@ import axios from "axios";
 export default {
   name: "App",
 
-  created() {
+  mounted() {
     axios
-      .get("http://localhost:5000")
+      .get("http://localhost:5000/posts")
       .then((response) => {
         console.log(response.data);
         this.$store.commit("setPosts", response.data);
